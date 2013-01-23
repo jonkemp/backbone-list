@@ -37,11 +37,57 @@
 <script type="text/template" id="hello-template">
   <div class="hero-unit">
     <h1>Hello World!</h1>
+    <ul id="items"></ul>
   </div>
 </script>
 
 <script>
   $(function(){
+
+    var Item = Backbone.Model.extend({
+
+      defaults: function() {
+        return {
+          title: "New item"
+        };
+      },
+
+      initialize: function() {
+        if (!this.get("title")) {
+          this.set({"title": this.defaults().title});
+        }
+      }
+
+    });
+
+
+    var ItemList = Backbone.Collection.extend({
+
+      model: Item
+
+    });
+
+    var Items = new ItemList;
+
+
+    var ItemView = Backbone.View.extend({
+
+      tagName:  "li",
+
+      template: _.template($('#items').html()),
+
+      initialize: function() {
+        this.listenTo(this.model, 'change', this.render);
+      },
+
+      render: function() {
+        this.$el.html(this.template(this.model.toJSON()));
+        return this;
+      }
+
+    });
+
+
     var AppView = Backbone.View.extend({
 
       el: $(".container"),
