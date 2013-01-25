@@ -48,17 +48,25 @@
 
       defaults: function() {
         return {
-          title: "New item"
+          text: "New item"
         };
       },
 
       initialize: function() {
-        if (!this.get("title")) {
-          this.set({"title": this.defaults().title});
+        if (!this.get("text")) {
+          this.set({"text": this.defaults().text});
         }
       }
 
     });
+
+    var item1 = new Item({text: "Elderly woman behind the counter"});
+
+    console.log(item1.get("text"));
+
+    item1.set({text: "It's evolution baby"});
+
+    console.log(item1.get("text"));
 
 
     var ItemList = Backbone.Collection.extend({
@@ -68,24 +76,6 @@
     });
 
     var Items = new ItemList;
-
-
-    var ItemView = Backbone.View.extend({
-
-      tagName:  "li",
-
-      template: _.template($('#items').html()),
-
-      initialize: function() {
-        this.listenTo(this.model, 'change', this.render);
-      },
-
-      render: function() {
-        this.$el.html(this.template(this.model.toJSON()));
-        return this;
-      }
-
-    });
 
 
     var AppView = Backbone.View.extend({
