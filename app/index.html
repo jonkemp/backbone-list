@@ -62,11 +62,7 @@
 
     var item1 = new Item({text: "Elderly woman behind the counter"});
 
-    console.log(item1.get("text"));
-
-    item1.set({text: "It's evolution baby"});
-
-    console.log(item1.get("text"));
+    var item2 = new Item({text: "It's evolution baby"});
 
 
     var ItemList = Backbone.Collection.extend({
@@ -74,8 +70,6 @@
       model: Item
 
     });
-
-    var Items = new ItemList;
 
 
     var AppView = Backbone.View.extend({
@@ -86,12 +80,22 @@
 
       initialize: function(){
         this.render();
+
+        var Items = new ItemList;
+
+        Items.bind('add', this.updateListview);
+
+        Items.add([item1, item2]);
       },
 
       render: function() {
         this.$el.html(this.template);
 
         return this;
+      },
+
+      updateListview: function(item) {
+        $('ul').append('<li>'+item.get("text")+'</li>');
       }
 
     });
