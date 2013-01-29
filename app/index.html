@@ -60,6 +60,7 @@
 
     });
 
+
     var item1 = new Item({text: "Elderly woman behind the counter"});
 
     var item2 = new Item({text: "It's evolution baby"});
@@ -69,6 +70,17 @@
 
       model: Item
 
+    });
+
+
+    var ItemView = Backbone.View.extend({
+      tagName: 'li',
+
+      render: function(){
+        $(this.el).html(this.model.get('text'));
+
+        return this;
+      }
     });
 
 
@@ -83,7 +95,7 @@
 
         var Items = new ItemList;
 
-        Items.bind('add', this.updateListview);
+        this.listenTo(Items, 'add', this.updateListview);
 
         Items.add([item1, item2]);
       },
@@ -95,7 +107,12 @@
       },
 
       updateListview: function(item) {
-        $('ul').append('<li>'+item.get("text")+'</li>');
+        
+        var itemView = new ItemView({
+          model: item
+        });
+
+        $('ul').append(itemView.render().el);
       }
 
     });
