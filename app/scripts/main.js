@@ -1,14 +1,9 @@
+var app = app || {};
 
-window.backboneList = {
-  Models: {},
-  Collections: {},
-  Views: {},
-  Routers: {},
-  init: function() {
-    console.log('Hello from Backbone!');
-  }
-};
+$(function(){
 
-$(document).ready(function(){
-  backboneList.init();
+  // var item1 = new app.Item({text: "Elderly woman behind the counter"});
+  // var item2 = new app.Item({text: "It's evolution baby"});
+
+  var App = new app.AppView;
 });

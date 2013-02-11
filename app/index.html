@@ -41,85 +41,11 @@
   </div>
 </script>
 
-<script>
-  $(function(){
+<script src="scripts/models/item.js"></script>
+<script src="scripts/collections/items.js"></script>
+<script src="scripts/views/item.js"></script>
+<script src="scripts/views/app.js"></script>
+<script src="scripts/main.js"></script>
 
-    var Item = Backbone.Model.extend({
-
-      defaults: function() {
-        return {
-          text: "New item"
-        };
-      },
-
-      initialize: function() {
-        if (!this.get("text")) {
-          this.set({"text": this.defaults().text});
-        }
-      }
-
-    });
-
-
-    var item1 = new Item({text: "Elderly woman behind the counter"});
-
-    var item2 = new Item({text: "It's evolution baby"});
-
-
-    var ItemList = Backbone.Collection.extend({
-
-      model: Item
-
-    });
-
-
-    var ItemView = Backbone.View.extend({
-      tagName: 'li',
-
-      render: function(){
-        $(this.el).html(this.model.get('text'));
-
-        return this;
-      }
-    });
-
-
-    var AppView = Backbone.View.extend({
-
-      el: $(".container"),
-
-      template: _.template($('#hello-template').html()),
-
-      initialize: function(){
-        this.render();
-
-        var Items = new ItemList;
-
-        this.listenTo(Items, 'add', this.updateListview);
-
-        Items.add([item1, item2]);
-      },
-
-      render: function() {
-        this.$el.html(this.template);
-
-        return this;
-      },
-
-      updateListview: function(item) {
-        
-        var itemView = new ItemView({
-          model: item
-        });
-
-        $('ul').append(itemView.render().el);
-      }
-
-    });
-
-    var App = new AppView;
-
-  });
-</script>
 </body>
 </html>
