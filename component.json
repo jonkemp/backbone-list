@@ -1,0 +1,12 @@
+{
+  "name": "backbone-list",
+  "version": "1.0.0",
+  "dependencies": {
+    "modernizr": "~2.6.2",
+    "jquery": "~1.9.1",
+    "lodash": "~1.0.1",
+    "backbone": "~0.9.10",
+    "bootstrap-sass": "~2.3.1"
+  },
+  "devDependencies": {}
+}
