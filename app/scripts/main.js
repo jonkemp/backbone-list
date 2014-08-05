@@ -1,7 +1,10 @@
+/* global $ */
+
 var app = app || {};
 
 $(function(){
+    'use strict';
 
-  var App = new app.AppView;
+    new app.AppView();
 
 });

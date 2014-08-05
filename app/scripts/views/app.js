@@ -1,32 +1,35 @@
+/* global Backbone, $ */
+'use strict';
+
 var app = app || {};
 
 app.AppView = Backbone.View.extend({
 
-  el: '.container',
+    el: '.container',
 
-  events: {
-    'submit form': 'addItem'
-  },
+    events: {
+        'submit form': 'addItem'
+    },
 
-  initialize: function(){
-    this.input = this.$('#item-text');
+    initialize: function(){
+        this.input = this.$('#item-text');
 
-    this.listenTo( window.app.Items, 'add', this.updateListview );
-  },
+        this.listenTo( window.app.Items, 'add', this.updateListview );
+    },
 
-  updateListview: function(item) {
+    updateListview: function(item) {
 
-    var itemView = new app.ItemView({
-      model: item
-    });
+        var itemView = new app.ItemView({
+            model: item
+        });
 
-    $('#items').append( itemView.render().el );
-  },
+        $('#items').append( itemView.render().el );
+    },
 
-  addItem: function() {
-    app.Items.add({name: this.input.val()});
-    this.input.val('');
+    addItem: function() {
+        app.Items.add({name: this.input.val()});
+        this.input.val('');
 
-    return false;
-  }
+        return false;
+    }
 });
