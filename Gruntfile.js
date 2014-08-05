@@ -62,9 +62,9 @@ module.exports = function (grunt) {
                 options: {
                     middleware: function (connect) {
                         return [
-                            mountFolder(connect, '.tmp'),
-                            mountFolder(connect, yeomanConfig.app),
-                            lrSnippet
+                            connect.static('.tmp'),
+                            connect().use('/bower_components', connect.static('./bower_components')),
+                            connect.static(yeomanConfig.app)
                         ];
                     }
                 }
