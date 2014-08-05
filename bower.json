@@ -6,7 +6,16 @@
     "jquery": "~1.9.1",
     "lodash": "~1.0.1",
     "backbone": "~0.9.10",
-    "bootstrap-sass": "~2.3.1"
+    "bootstrap-sass": "~2.3.1",
+    "backbone.marionette": "~2.1.0"
   },
-  "devDependencies": {}
+  "homepage": "https://github.com/jonkemp/backbone-list",
+  "authors": [
+    "Jonathan Kemp <kempdogg@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "resolutions": {
+    "backbone": "1.0.0 - 1.1.2"
+  }
 }
