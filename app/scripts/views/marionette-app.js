@@ -9,13 +9,17 @@ var AppView = Marionette.CompositeView.extend({
 
     childViewContainer: '#items',
 
+    ui: {
+        input: '#item-text'
+    },
+
     events: {
         'submit form': 'addItem'
     },
 
     addItem: function(event) {
         event.preventDefault();
-        this.collection.add({name: this.$('#item-text').val()});
-        this.$('#item-text').val('');
+        this.collection.add({name: this.ui.input.val()});
+        this.ui.input.val('');
     }
 });
