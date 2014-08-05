@@ -14,7 +14,7 @@ app.AppView = Backbone.View.extend({
     initialize: function(){
         this.input = this.$('#item-text');
 
-        this.listenTo( window.app.Items, 'add', this.updateListview );
+        this.listenTo( this.collection, 'add', this.updateListview );
     },
 
     updateListview: function(item) {
@@ -27,7 +27,7 @@ app.AppView = Backbone.View.extend({
     },
 
     addItem: function() {
-        app.Items.add({name: this.input.val()});
+        this.collection.add({name: this.input.val()});
         this.input.val('');
 
         return false;

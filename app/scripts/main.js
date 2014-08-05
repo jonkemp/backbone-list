@@ -5,6 +5,6 @@ var app = app || {};
 $(function(){
     'use strict';
 
-    new app.AppView();
+    new app.AppView({ collection: app.Items });
 
 });
